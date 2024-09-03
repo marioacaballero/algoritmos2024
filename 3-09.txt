@@ -1,0 +1,124 @@
+//Se tiene una planilla por cada obra de arte (esculturas y pinturas) del museo Panizza y se necesita
+//determinar:
+//	a) % de esculturas ingresadas antes del año 2020
+//	b) obra de arte más antigua del museo
+//	c) patrimonio valorizado total ($) que tiene el museo
+//	
+//Modificar el algoritmo del punto 1 para que se obtengan los mismos resultados para todos los museos de la
+//			ciudad de Concepción del Uruguay, obteniendo además cuál es el museo con menor cantidad de pinturas ingresadas
+//			antes del año 2018
+
+Algoritmo Museum
+	Definir statueCounter, year, artCounter, minArtYear, museumCount, paintCounter, minPaintCounter Como Entero;
+	Definir percent, price, artPriceCounter como Real;
+	Definir key, type, assist Como Caracter;
+	Definir name, minName como Cadena;
+	
+	minPaintCounter <- 1000000;
+	
+	Escribir "Cuantos museos desea cargar en total? " Sin Saltar;
+	Leer museumCount;
+	
+	Para i <- 1 hasta museumCount Hacer		
+		paintCounter <- 0;
+		artCounter <- 0;
+		statueCounter <- 0;
+		artPriceCounter <- 0;
+		minArtYear <- 2024;
+		
+		Escribir "Va a cargar las obras de arte del museo ", i, " presione S para continuar";
+		Leer key;
+		
+		Limpiar Pantalla
+		
+		Escribir "Nombre del museo?: " Sin Saltar;
+		Leer name;
+		
+		Mientras (Mayusculas(key) = "S") Hacer
+			artCounter <- artCounter + 1;
+			Escribir "Año de la obra: " Sin Saltar;
+			Leer year;
+			
+			Si (minArtYear > year) Entonces
+				minArtYear <- year;
+			FinSi
+			
+			Escribir "La obra de arte es Pintura (P) o Escultura (E)? " Sin Saltar;
+			Leer type;
+			
+			Escribir "Cuanto vale su obra? " Sin Saltar;
+			Leer price;
+			
+			artPriceCounter <- artPriceCounter + price;
+			
+			Si (year < 2020 Y Mayusculas(type) = "E") Entonces
+				statueCounter <- statueCounter + 1;
+			FinSi
+			
+			Si (year < 2018 Y Mayusculas(type) = "P") Entonces
+				paintCounter <- paintCounter + 1;
+			FinSi
+			
+			Escribir "Desea agregar otra obra? Presione S para continuar N para cancelar";
+			Leer key;
+		FinMientras
+		
+		percent <- statueCounter / artCounter * 100;
+		
+		Si (minPaintCounter > paintCounter) Entonces
+			minPaintCounter <- paintCounter;
+			minName <- name;
+		FinSi
+		
+		Escribir "En el museo ", i, " (", name ") se obtuvieron:"
+		Escribir "El porcentaje de esculturas anteriores al 2020 es de ", percent, " %";
+		Escribir "La obra mas antigua es del año ", minArtYear;
+		Escribir "El patrimonio total del museo es de ", artPriceCounter, " de pesos";
+		
+	FinPara
+	
+	Escribir "El museo con menor cantidad de pinturas ingresadas antes del 2018 es el museo ", minName;
+	
+	
+FinAlgoritmo
+
+
+
+Algoritmo sumatoria
+	Definir a,resultado Como Real
+	Definir cantidad_numeros, i Como Entero
+	Escribir "Ingrese cantidad de números de la sumatoria"
+	leer cantidad_numeros
+	i <- 0;
+	si cantidad_numeros > 0 Entonces
+		Repetir
+			leer a
+			resultado <- resultado + a
+			i <- i + 1;
+		Hasta Que i = cantidad_numeros
+	FinSi
+	Escribir resultado
+FinAlgoritmo
+
+
+
+Algoritmo sumatoria
+	Definir a,resultado Como Real
+	Definir cantidad_numeros, i Como Entero
+	Escribir "Ingrese cantidad de números de la sumatoria"
+	leer cantidad_numeros
+	
+	resultado <- 0;
+	i <- 0;
+	
+	si cantidad_numeros > 0 Entonces
+		mientras cantidad_numeros > i hacer
+			i <- i + 1
+			leer a
+			resultado <- resultado + a
+		finmientras
+		Escribir resultado
+	FinSi
+FinAlgoritmo
+
+
