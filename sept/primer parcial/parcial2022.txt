@@ -1,0 +1,44 @@
+Algoritmo Parcial_2022
+	Definir key Como Caracter;
+	Definir articlesCount, payType, cuotes Como Entero;
+	Definir price Como Real;
+	
+	articlesCount <- 0;
+	
+	Escribir 'Va a comenzar la carga de articulos comprados, presione S para continuar N para salir' Sin Saltar;
+	Leer key;
+	
+	Mientras Mayusculas(key) <> 'N' hacer
+		articlesCount <- articlesCount + 1;
+		
+		Escribir 'Ingrese el precio del articulo' Sin Saltar;
+		Leer price;
+		
+		Escribir 'Como lo abona? 1 Debito o 2 Credito' Sin Saltar;
+		Leer payType;
+		
+		Segun payType Hacer
+			1: Escribir 'El producto le queda con el mismo precio ', price;
+			2: 
+				Escribir 'En cuantas coutas va a pagar? 1, 2 o 3?' Sin Saltar;
+				Leer cuotes;
+				Segun cuotes hacer
+					1: Escribir 'El producto le queda con el mismo precio ', price;
+					2: Escribir 'El producto le queda con el mismo precio ', price;
+					3: Escribir 'El producto tiene un recargo del 20%, lo cual da un valor de ', price*1.2;
+				FinSegun
+			De Otro Modo:
+				Escribir 'Valor ingresado incorrecto';
+		FinSegun
+		
+		Escribir 'Desea cargar otro articulo?, presione S para continuar N para salir' Sin Saltar;
+		Leer key;
+	FinMientras
+	
+	Si articlesCount > 0 Entonces
+		Escribir 'Compro en total ', articlesCount, ' articulos.';
+	SiNo
+		Escribir 'No se compraron articulos';
+	FinSi
+
+FinAlgoritmo
