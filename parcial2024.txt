@@ -1,0 +1,224 @@
+//El correo de una ciudad tiene las siguientes funciones: Postales - Paqueteria - Filatelia
+//Para poder tomar decisiones, se necesitaria evaluar cada transaccion realizada en el mes de agosto de 2024, y determinar:
+//a) porcentaje que representa la recaudacion por paqueteria respecto del total de la recaudacion
+//b) mostrar la transaccion de mayor monto de la filatelia
+//c) cual fue el servicio postal con mayor recaudacion (cartas documentos o giros postales)
+
+Algoritmo parcial_2024
+	Definir price, totalPaq, totalTransactions, filateliaMax, letterCount, postalCount como Real;
+	Definir key Como Caracter;
+	Definir transactionType, postalType Como Entero;
+	Definir filateliaName, name como Cadena;
+	
+	Escribir 'Va a ingresar las transacciones del mes de Agosto 2024, S para continuar N para cancelar' Sin Saltar;
+	Leer key;
+	
+//	Inicializo los acumuladores y el maximo
+	totalTransactions <- 0;
+	totalPaq <- 0;
+	filateliaMax <- 0;
+	letterCount <- 0;
+	postalCount <- 0;
+	
+	Mientras Mayusculas(key) <> 'N' Hacer		
+		Escribir 'Cual es el costo de la transaccion? $' Sin Saltar;
+		Leer price;
+		totalTransactions <- totalTransactions + price;
+		
+		Escribir 'Que transaccion va a ingresar? 1 Postales, 2 Paqueteria, 3 Filatelia' Sin Saltar;
+		Leer transactionType;
+		
+		Segun transactionType Hacer
+			1:
+				Escribir 'Es 1 carta documento o 2 giro postal?' Sin Saltar;
+				Leer postalType;
+				
+				Segun postalType Hacer
+					1: letterCount <- letterCount + price;
+					2: postalCount <- postalCount + price;
+				FinSegun
+			2: totalPaq <- totalPaq + price;
+			3:
+				Escribir 'Cual es el servicio de la filatelia?';
+				Leer name;
+				
+				Si filateliaMax < price Entonces
+					filateliaMax <- price;
+					filateliaName <- name;
+				FinSi
+				
+			De Otro Modo:
+				Escribir 'Valor ingresado incorrecto';
+		FinSegun
+		
+		Escribir 'Guardado. Cargar otra transaccion?, S para continuar N para cancelar' Sin Saltar;
+		Leer key;
+	FinMientras
+	
+//	punto a
+	Si totalTransactions > 0 Entonces
+		Escribir 'La paqueteria representa el ', totalPaq/totalTransactions*100, ' % de un total de $', totalTransactions;
+	SiNo
+		Escribir 'No se registro transaccion de paqueteria';
+	FinSi
+	
+//	punto b
+	Escribir 'La transaccion de filatelia de mayor monto fue ', filateliaName, ' con $', filateliaMax;
+	
+//	punto c
+	Si letterCount > postalCount Entonces
+		Escribir 'El servicio postal de mayor recaudacion es el de carta documento con $', letterCount;
+	SiNo
+		si postalCount <> letterCount Entonces
+			Escribir 'El servicio postal de mayor recaudacion es de giros postales con $', postalCount;
+		SiNo
+			Escribir 'Las cartas documentos y los giros postales tienen igual recaudacion con $', letterCount;
+		FinSi
+	FinSi
+	
+FinAlgoritmo
+
+
+
+
+//El correo de una ciudad tiene las siguientes funciones: Postales - Paqueteria - Filatelia
+//Para poder tomar decisiones, se necesitaria evaluar cada transaccion realizada en el mes de agosto de 2024, y determinar:
+//a) porcentaje que representa la recaudacion por paqueteria respecto del total de la recaudacion
+//b) mostrar la transaccion de mayor monto de la filatelia
+//c) cual fue el servicio postal con mayor recaudacion (cartas documentos o giros postales)
+
+//Como modificaria el algoritmo para simular el funcionamiento de las 1400 sucursales mostrando ademas,
+//en que parte de la Argentina se encuentra la sucursal que mas cantidad de paqueteria tramito (zona centro, norte, sur)
+
+Algoritmo parcial_2024_punto_3
+	Definir price, totalPaq, totalTransactions, filateliaMax, letterCount, postalCount como Real;
+	Definir key Como Caracter;
+	Definir transactionType, postalType, localCount, maxCount, zone, maxZone Como Entero;
+	Definir filateliaName, name como Cadena;
+	
+	maxCount <- 0;
+	
+	Para i<- 1 Hasta 3 Hacer
+		Escribir 'A que zona pertenece: 1 Norte, 2 Centro, 3 Sur ' Sin Saltar;
+		Leer zone
+		
+		Escribir 'Va a ingresar las transacciones del mes de Agosto 2024 de la sucursal ', i, ', S para continuar N para cancelar' Sin Saltar;
+		Leer key;
+		
+	//	Inicializo los acumuladores y el maximo
+		totalTransactions <- 0;
+		totalPaq <- 0;
+		filateliaMax <- 0;
+		letterCount <- 0;
+		postalCount <- 0;
+		localCount <- 0;
+		
+		Mientras Mayusculas(key) <> 'N' Hacer		
+			Escribir 'Cual es el costo de la transaccion? $' Sin Saltar;
+			Leer price;
+			totalTransactions <- totalTransactions + price;
+			
+			Escribir 'Que transaccion va a ingresar? 1 Postales, 2 Paqueteria, 3 Filatelia' Sin Saltar;
+			Leer transactionType;
+			
+			Segun transactionType Hacer
+				1:
+					Escribir 'Es 1 carta documento o 2 giro postal?' Sin Saltar;
+					Leer postalType;
+					
+					Segun postalType Hacer
+						1: letterCount <- letterCount + price;
+						2: postalCount <- postalCount + price;
+					FinSegun
+				2: 
+					totalPaq <- totalPaq + price;
+					localCount <- localCount + 1;
+				3:
+					Escribir 'Cual es el servicio de la filatelia?';
+					Leer name;
+					
+					Si filateliaMax < price Entonces
+						filateliaMax <- price;
+						filateliaName <- name;
+					FinSi
+					
+				De Otro Modo:
+					Escribir 'Valor ingresado incorrecto';
+			FinSegun
+			
+			Escribir 'Guardado. Cargar otra transaccion?, S para continuar N para cancelar' Sin Saltar;
+			Leer key;
+		FinMientras
+		
+	//	punto a
+		Si totalTransactions > 0 Entonces
+			Escribir 'La paqueteria representa el ', totalPaq/totalTransactions*100, ' % de un total de $', totalTransactions;
+		SiNo
+			Escribir 'No se registro transaccion de paqueteria';
+		FinSi
+		
+	//	punto b
+		Escribir 'La transaccion de filatelia de mayor monto fue ', filateliaName, ' con $', filateliaMax;
+		
+	//	punto c
+		Si letterCount > postalCount Entonces
+			Escribir 'El servicio postal de mayor recaudacion es el de carta documento con $', letterCount;
+		SiNo
+			si postalCount <> letterCount Entonces
+				Escribir 'El servicio postal de mayor recaudacion es de giros postales con $', postalCount;
+			SiNo
+				Escribir 'Las cartas documentos y los giros postales tienen igual recaudacion con $', letterCount;
+			FinSi
+		FinSi
+		
+		Si maxCount < localCount Entonces
+			maxCount <- localCount;
+			maxZone <- zone;
+		FinSi
+	
+	FinPara
+	
+	Segun maxZone Hacer
+		1: Escribir 'La zona norte fue la que mas paqueteria tramito';
+		2: Escribir 'La zona centro fue la que mas paqueteria tramito';
+		3: Escribir 'La zona sur fue la que mas paqueteria tramito';
+	FinSegun
+	
+FinAlgoritmo
+
+
+
+
+//Corregir el algoritmo para que funcione
+
+Algoritmo potencia
+	Definir base, exponente, resultado Como Real;
+	Definir i Como Entero;
+	Escribir 'Ingrese base y exponente ';
+	Leer base;
+	Leer exponente;
+
+	i <- 0;
+	
+	si base <> 0 y exponente > 0 Entonces
+		Mientras i < exponente Hacer
+			si i = 0 Entonces
+				resultado <- base;
+			SiNo
+				resultado <- resultado * base;
+			FinSi
+			i <- i + 1;
+		FinMientras
+	SiNo
+		si exponente = 0 Entonces
+			resultado <- 1;
+		SiNo
+			si base = 0 Entonces
+				resultado <- 0;
+			FinSi
+		FinSi
+	FinSi
+	
+	Escribir resultado
+	
+FinAlgoritmo
