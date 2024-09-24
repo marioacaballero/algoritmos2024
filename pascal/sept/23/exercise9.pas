@@ -1,22 +1,22 @@
 
-Program ejerciseUseMenu;
+Program exercise9;
 
-Uses unitVectorBase, unitLogicBuss, crt;
+Uses unitVectorBase, crt, unit9;
 
 Const 
-  opciones: Array[1..n] Of string = ('Init', 'Charge', 'Show',
-                                     'Total', 'Ask',
-                                     'Move last to first', 'Exit');
+  nOp = 5;
+  opciones: Array[1..nOp] Of string = ('Init', 'Charge', 'Show', 'Yung Peoples',
+                                       'Exit');
 
 Var 
   v: vector;
-  key: Char;
   i, here: integer;
+  key: Char;
 Begin
   here := 1;
   Repeat
     clrscr;
-    For i:= 1 To n Do
+    For i:= 1 To nOp Do
       Begin
         If i = here Then
           textcolor(white)
@@ -35,11 +35,11 @@ Begin
                  If (here > 1) Then
                    here := here - 1
                  Else
-                   here := n;
+                   here := nOp;
                End;
           #80:
                Begin
-                 If (here < n) Then
+                 If (here < nOp) Then
                    here := here + 1
                  Else
                    here := 1;
@@ -54,9 +54,7 @@ Begin
             1: init(v);
             2: charge(v);
             3: show(v);
-            4: total(v);
-            5: ask(v);
-            6: reorder(v);
+            4: youngsPeoples(v);
             Else
               key := chr(5);
           End;

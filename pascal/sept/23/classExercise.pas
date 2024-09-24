@@ -1,17 +1,17 @@
 
-Program ejerciseUseMenu;
+Program classExercise;
 
-Uses unitVectorBase, unitLogicBuss, crt;
+Uses crt;
 
 Const 
-  opciones: Array[1..n] Of string = ('Init', 'Charge', 'Show',
-                                     'Total', 'Ask',
-                                     'Move last to first', 'Exit');
+  n = 5;
+  opciones: Array[1..n] Of string = ('Alta', 'Baja', 'Modificacion', 'Consulta',
+                                     'Salir');
 
 Var 
-  v: vector;
   key: Char;
   i, here: integer;
+
 Begin
   here := 1;
   Repeat
@@ -51,14 +51,11 @@ Begin
         Begin
           clrscr;
           Case here Of 
-            1: init(v);
-            2: charge(v);
-            3: show(v);
-            4: total(v);
-            5: ask(v);
-            6: reorder(v);
-            Else
-              key := chr(5);
+            1: WriteLn('Alta');
+            2: WriteLn('Baja');
+            3: WriteLn('Modificacion');
+            4: WriteLn('Consulta');
+            5: key := chr(5);
           End;
           readkey;
         End;

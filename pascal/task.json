@@ -2,16 +2,19 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Compilar Pascal",
+      "label": "build",
       "type": "shell",
       "command": "fpc",
-      "args": ["${file}"],
+      "args": [
+        "-Fu/usr/local/lib/fpc/3.2.2/units/x86_64-linux/*",
+        "-Fu/usr/local/lib/fpc/3.2.2/units/x86_64-linux/rtl-console",
+        "${file}"
+      ],
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": ["$gcc"],
-      "detail": "Compilación de archivos Pascal"
+      "problemMatcher": ["$gcc"]
     }
   ]
 }
