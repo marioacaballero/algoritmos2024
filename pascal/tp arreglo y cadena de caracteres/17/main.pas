@@ -64,26 +64,9 @@ Begin
                End;
             2: charge(n, v);
             3: showAll(n, v);
-            4:
-               Begin
-                 Write('Enter the position: ');
-                 ReadLn(position);
-                 Write('Enter the name: ');
-                 ReadLn(name);
-                 chargeOnePosition(position, name, v)
-               End;
-            5:
-               Begin
-                 write('Enter the position: ');
-                 ReadLn(position);
-                 showOnePosition(position, v);
-               End;
-            6:
-               Begin
-                 write('Enter the position: ');
-                 ReadLn(position);
-                 deleteOnePosition(position, v);
-               End;
+            4: chargeOnePosition(v);
+            5: showOnePosition(v);
+            6: deleteOnePosition(v);
             Else
               Begin
                 key := chr(5);

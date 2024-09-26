@@ -6,41 +6,61 @@ Interface
 
 Uses unitVectorBaseTp;
 
-Procedure chargeOnePosition(n: integer; name: String; Var v: vector);
-Procedure showOnePosition(n: integer; v: vector);
-Procedure deleteOnePosition(n: integer; Var v: vector);
+Procedure chargeOnePosition(Var v: vector);
+Procedure showOnePosition(v: vector);
+Procedure deleteOnePosition(Var v: vector);
 Procedure showAll(n: integer; v: vector);
 
 Implementation
-Function chargePosition(n: integer; name: String; v: vector): string;
+Function chargePosition(name: String; v: vector): string;
+
+Var 
+  position: integer;
 Begin
-  If (n >= 0) And (n <= 45) Then
+  Write('Enter the position: ');
+  ReadLn(position);
+  If (position >= 0) And (position <= 45) Then
     Begin
-      v[n] := name;
+      v[position] := name;
       chargePosition := 'Process complete';
     End;
 End;
 
-Procedure chargeOnePosition(n: integer; name: String; Var v: vector);
+Procedure chargeOnePosition(Var v: vector);
+
+Var 
+  name: String;
 Begin
-  WriteLn(chargePosition(n, name, v));
+  Write('Enter the name: ');
+  ReadLn(name);
+  WriteLn(chargePosition(name, v));
 End;
 
-Procedure showOnePosition(n: integer; v: vector);
+Procedure showOnePosition(v: vector);
+
+Var 
+  position: integer;
 Begin
-  If (v[n] <> '') Then
+  Write('Enter the position: ');
+  ReadLn(position);
+  If (v[position] <> '') Then
     Begin
-      writeLn('Position ', n, ' with: ', v[n]);
+      writeLn('Position ', position, ' with: ', v[position]);
     End
   Else
     Begin
-      writeLn('Position ', n, ' is empty');
+      writeLn('Position ', position, ' is empty');
     End;
 End;
 
-Procedure deleteOnePosition(n: integer; Var v: vector);
+Procedure deleteOnePosition(Var v: vector);
+
+Var 
+  position: integer;
 Begin
-  writeLn(chargePosition(n, '', v));
+  Write('Enter the position: ');
+  ReadLn(position);
+  writeLn(chargePosition('', v));
 End;
 
 Procedure showAll(n: integer; v: vector);
