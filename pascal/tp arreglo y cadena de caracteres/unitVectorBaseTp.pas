@@ -4,7 +4,7 @@ Unit unitVectorBaseTp;
 Interface
 
 Type 
-  dataType = integer;
+  dataType = string;
   vector = array Of dataType;
 
 Procedure init(n: integer; Var v: vector);
@@ -21,7 +21,7 @@ Var
 Begin
   For i:= 1 To n Do
     Begin
-      v[i] := 0;
+      v[i] := '';
     End;
 
   WriteLn('Vector initialized, press any key to continue');
