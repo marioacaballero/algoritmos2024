@@ -3,7 +3,9 @@ Unit unit9;
 
 Interface
 
-Uses unitVectorBase;
+{$unitpath ../}
+
+Uses unitVectorBaseTp;
 
 Procedure youngsPeoples(v: vector);
 

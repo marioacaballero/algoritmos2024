@@ -1,12 +1,14 @@
 
-Program exercise7;
+Program main;
 
-Uses unitVectorBase, crt, unit7;
+{$unitpath ../}
+
+Uses unitVectorBaseTp, crt, unit9;
 
 Const 
-  nOp = 6;
-  opciones: Array[1..nOp] Of string = ('Init', 'Charge', 'Show', 'Min',
-                                       'Ask repeats', 'Exit');
+  nOp = 5;
+  opciones: Array[1..nOp] Of string = ('Init', 'Charge', 'Show', 'Yung Peoples',
+                                       'Exit');
 
 Var 
   v: vector;
@@ -54,8 +56,7 @@ Begin
             1: init(v);
             2: charge(v);
             3: show(v);
-            4: minValue(v);
-            5: askTotal(v);
+            4: youngsPeoples(v);
             Else
               key := chr(5);
           End;

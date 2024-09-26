@@ -3,7 +3,9 @@ Unit unit7;
 
 Interface
 
-Uses unitVectorBase;
+{$UNITPATH ../}
+
+Uses unitVectorBaseTp;
 
 Procedure minValue(v: vector);
 Procedure askTotal(v: vector);

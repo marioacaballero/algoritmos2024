@@ -1,12 +1,15 @@
 
-Program exercise9;
+Program main;
 
-Uses unitVectorBase, crt, unit9;
+{$UNITPATH ../}
+// Para poder usar las unidades de otros directorios
+
+Uses unitVectorBaseTp, crt, unit7;
 
 Const 
-  nOp = 5;
-  opciones: Array[1..nOp] Of string = ('Init', 'Charge', 'Show', 'Yung Peoples',
-                                       'Exit');
+  nOp = 6;
+  opciones: Array[1..nOp] Of string = ('Init', 'Charge', 'Show', 'Min',
+                                       'Ask repeats', 'Exit');
 
 Var 
   v: vector;
@@ -54,7 +57,8 @@ Begin
             1: init(v);
             2: charge(v);
             3: show(v);
-            4: youngsPeoples(v);
+            4: minValue(v);
+            5: askTotal(v);
             Else
               key := chr(5);
           End;
