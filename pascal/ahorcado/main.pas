@@ -6,10 +6,9 @@ Program main;
 Uses crt, adminUnit, baseUnit;
 
 Const 
-  nOp = 5;
+  nOp = 3;
   opciones: Array[1..nOp] Of string = ('Admin panel',
-                                       'Words count', 'Vowel count',
-                                       'White spaces', 'Exit');
+                                       'Start game', 'Exit');
 
 Var 
   w: string;
@@ -67,7 +66,6 @@ Begin
           Case here Of 
             1: adminPanel(w);
             2: initWord(w);
-            3: Write('3');
             Else
               Begin
                 key := chr(5);
