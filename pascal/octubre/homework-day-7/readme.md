@@ -11,5 +11,5 @@ Se cuenta con los apellidos y nombres de los 96 alumnos de Algoritmos y Estructu
 
 - [x] cargar los 96 apellidos y nombres en un vector
 - [x] listado ordenado en forma alfabética de los apellidos y nombres de los alumnos
-- [] listado ordenado de todos los alumnos, cuyo apellido comienza con 'Pe'
+- [x] listado ordenado de todos los alumnos, cuyo apellido comienza con 'Pe'
 - [x] consulta si un alumno se encuentra en esta comisión
