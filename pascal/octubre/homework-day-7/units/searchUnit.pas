@@ -76,20 +76,30 @@ Begin
         End;
     End;
 
-  SetLength(studentsFilter, j);
-
-  j := 0;
-  For i:= 1 To Length(positions) Do
+  If (j > 0 ) Then
     Begin
-      If (positions[i] <> ' ') Then
-        Begin
-          Inc(j);
-          studentsFilter[j] := students[StrToInt(positions[i])];
-        End
-    End;
+      SetLength(studentsFilter, j);
 
-  bubbleSort(studentsFilter);
-  showStudentsFilter(studentsFilter);
+      j := 0;
+      For i:= 1 To Length(positions) Do
+        Begin
+          If (positions[i] <> ' ') Then
+            Begin
+              Inc(j);
+              studentsFilter[j] := students[StrToInt(positions[i])];
+            End
+        End;
+
+      bubbleSort(studentsFilter);
+      showStudentsFilter(studentsFilter);
+    End
+  Else
+    Begin
+      writeln('');
+      writeln('There are no students who their lastname starts with "pe"');
+      writeln('');
+      WriteLn('press any key to continue...');
+    End;
 End;
 
 End.
