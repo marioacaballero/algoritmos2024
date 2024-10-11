@@ -5,11 +5,7 @@ Uses crt, unithm11;
 
 Const 
   nOp = 6;
-  opciones: Array[1..nOp] Of string = ('Cargar estudiantes',
-                                 'Mostrar estudiantes ordenados alfabeticamente'
-                                       , 'Mostrar estudiante de mayor nota',
-                                       'Mostrar estudiante de menor nota',
-                                       'Buscar persona', 'Exit');
+  opciones: Array[1..nOp] Of string = ('Cargar estudiantes', 'Mostrar estudiantes ordenados alfabeticamente', 'Mostrar estudiante de mayor nota', 'Mostrar estudiante de menor nota', 'Buscar persona', 'Exit');
 
 Var 
   i, here, pos: integer;
