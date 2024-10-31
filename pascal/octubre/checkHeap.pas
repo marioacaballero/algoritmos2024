@@ -1,13 +1,14 @@
 
 Program checkHeap;
 
-Uses sysUtils;
+// Uses sysUtils;
 
-Var 
-  HeapStatus: THeapStatus;
+// Var 
+//   HeapStatus: THeapStatus;
 
 Begin
-  HeapStatus := GetHeapStatus;
-  writeln('Tamaño total del heap: ', HeapStatus.TotalAddrSpace, ' bytes');
-  writeln('Tamaño del heap libre: ', HeapStatus.TotalFree, ' bytes');
+  // HeapStatus := GetHeapStatus;
+  // writeln('Tamaño total del heap: ', HeapStatus.TotalAddrSpace, ' bytes');
+  // writeln('Tamaño del heap libre: ', HeapStatus.TotalFree, ' bytes');
+  writeln('Tamaño del heap libre: ', getheapstatus.totalfree, ' bytes');
 End.
