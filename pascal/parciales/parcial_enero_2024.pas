@@ -47,7 +47,82 @@ Type
     tam: byte;
   End;
 
-  // punto b
+Procedure primero(L: T_Lista);
+Begin
+  L.act := L.cab;
+End;
+
+Procedure siguiente(L: T_Lista);
+Begin
+  L.act := L.act^.sig;
+End;
+
+Procedure recuperar(L: T_Lista; Var E: T_Dato_L);
+Begin
+  E := L.act^.info;
+End;
+
+Procedure buscar(Var L: T_Lista; buscado: String; enc: Boolean);
+
+Var 
+  XL: T_Dato_L;
+  pos: byte;
+Begin
+  primero(L);
+  pos := 0;
+  enc := false;
+  While (Not fin(L)) And (pos = 0) Do
+    Begin
+      recuperar(L, XL);
+      If ( (XL.hora + XL.N_Can) = buscado) Then
+        pos := 1
+      Else If ( (XL.hora + XL.N_Can) > buscado) Then
+             pos := 2
+      Else
+        siguiente(L);
+    End;
+  If (pos = 1) Then
+    enc := true;
+End;
+
+Procedure agregar(Var L: T_Lista; X: T_Dato_L);
+
+Var 
+  dir, ant: T_Punt_Lista;
+Begin
+  new(dir);
+  dir^.info := X;
+  If (L.cab^.sig = Nil) Or ((L.cab^.info.hora + L.cab^.info.N_Can) > (X.hora +
+     X.N_Can)) Then
+    Begin
+      dir^.sig := L.cab;
+      L.cab := dir;
+    End
+  Else
+    ant := L.cab;
+  L.cab := L.cab^.sig;
+  Begin
+    While (L.act <> Nil) And ((L.act^.info.hora + L.act^.info.N_Can) < (X.hora +
+          X.N_Can)) Do
+      Begin
+        ant := L.act;
+        L.act := ant^.sig;
+      End;
+    dir^.sig := L.act;
+    ant^.sig := dir;
+  End;
+  inc(L.tam);
+End;
+
+Procedure eliminar(Var L:T_Lista; X:T_Dato_L);
+
+Var 
+
+Begin
+
+End;
+
+// punto b
 Procedure b(Var Q: T_Cola; Var V: T_Vector; Var QA: T_Cola);
 
 Var 
