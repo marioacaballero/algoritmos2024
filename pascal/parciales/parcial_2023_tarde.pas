@@ -62,6 +62,22 @@ Type
 
   T_Vector_2 = array[1..2] Of T_Dato_Vector_2;
 
+  T_Dato_Lista_3 = Record
+    dni: String[8];
+    puntos: byte;
+  End;
+
+  T_Puntero_Lista_3 = ^T_Nodo_Lista_3;
+  T_Nodo_Lista_3 = Record
+    info: T_Dato_Lista_3;
+    sig: T_Puntero_Lista_3;
+  End;
+
+  T_Lista_3 = Record
+    cab, act: T_Puntero_Lista_3;
+    tam: word;
+  End;
+
   // ---------------------------------------------------------------------
   // V -> Vector de inf /// V2 -> Vector de quincenas
 Procedure punto_b (V:T_Vector;Var V2: T_Vector_2);
@@ -242,7 +258,8 @@ Begin
         Begin
           recorrer(V[i].L, dni);
           recuperar(V[i].L, XL);
-          WriteLn('El dni ', dni, ' tiene ', XL.cant_inf, ' inf en la quinc ', i
+          WriteLn('El dni ', dni, ' tiene ', XL.cant_inf,
+                  ' inf en la quinc ', i
           );
         End
       Else
@@ -261,14 +278,83 @@ Begin
 End;
 
 
+// ---------------------------------------------------------------------------
+Procedure punto_d(V: T_Vector; Var List: T_Lista_3);
 
-// cuerpo principal
+Var 
+  i: byte;
+  XL: T_Dato_Lista;
+  XL3: T_Dato_Lista_3;
+  enc: Boolean;
+Begin
+  For i:= 1 To n Do
+    Begin
+      primero(V[i].L);
+      While (Not fin(V[i].L)) Do
+        Begin
+          recuperar(V[i].L, XL);
+          buscar(List, XL.dni, enc);
+          If (enc) Then
+            Begin
+              recorrer(List, XL.dni);
+              Case XL.tipo Of 
+                1: List.act^.info.puntos := List.act^.info.puntos + 4;
+                2: List.act^.info.puntos := List.act^.info.puntos + 5;
+                3: List.act^.info.puntos := List.act^.info.puntos + 10;
+              End;
+            End
+          Else
+            Begin
+              XL3.dni := XL.dni;
+              Case XL.tipo Of 
+                1: XL3.puntos := 4;
+                2: XL3.puntos := 5;
+                3: XL3.puntos := 10;
+              End;
+              agregar(List, XL3);
+            End;
+          siguiente(V[i].L);
+        End;
+    End;
+End;
+
+Procedure muestra_d(V: T_Vector);
+
+Var 
+  L: T_Dato_Lista_3;
+Begin
+  crear(L);
+  punto_d(V, L);
+  muestra_lista(L);
+End;
+
+Procedure muestra_lista(L: T_Lista_3);
+
+Var 
+  E: T_Dato_Lista_3;
+Begin
+  primero(L);
+  While (Not fin(L)) Do
+    Begin
+      recuperar(L, E);
+      muestra_datos(E);
+      siguiente(L);
+    End;
+End;
+
+Procedure muestra_datos(E: T_Dato_Lista_3);
+Begin
+  Write('DNI: ', E.dni, ' | puntos a descontar: ', E.puntos);
+End;
+
+// ---------------------------------------------------------------------------
 
 Var 
   op: byte;
   V1: T_Vector;
   V2: T_Vector_2;
 
+  // cuerpo principal
 Begin
   Repeat
     Writeln('Opciones diponibles');
@@ -283,7 +369,7 @@ Begin
     Case op Of 
       1: punto_b(V1, V2);
       2: muestra_c(V2);
-      3: writeln('3');
+      3: muestra_d(V1);
     End;
 
   Until op = 4;
