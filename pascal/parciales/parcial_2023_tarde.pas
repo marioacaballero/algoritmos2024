@@ -138,6 +138,12 @@ Begin
     End;
 End;
 
+Procedure crear(Var L: T_Lista_2);
+Begin
+  L.cab := Nil;
+  L.tam := 0;
+End;
+
 Procedure primero(L: T_Lista);
 Begin
   L.act := L.cab;
