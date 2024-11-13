@@ -35,8 +35,8 @@ Begin
   If (pos <> -1) Then
     Begin
       Seek(f, pos);
-      // esta  linea del read se  puede obviar?
-      Read(f, data);
+      // Read(f, data); este read no es necesario
+      // ya que en el while me deja la data en memoria a traves del read
       data.nota := (data.nota + nota) / 2;
       Write(f, data);
     End
@@ -44,7 +44,8 @@ Begin
     Begin
       data.legajo := leg;
       data.nota := nota;
-      pos := FileSize(f) - 1;
+      pos := FileSize(f);
+      //no le resto 1 porque sino me da la ultima pos
       Seek(f, pos);
       Write(f, data);
     End;

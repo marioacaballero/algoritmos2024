@@ -16,8 +16,18 @@ Type
 Var 
   L: T_Lista;
   dir: T_punt;
+  cont: cardinal;
 Begin
-  If (L.tam = 3) Then
+  L.act := L.cab;
+  cont := 0;
+
+  While (L.act^.sig <> Nil) Do
+    Begin
+      inc(cont);
+      L.act := L.act^.sig;
+    End;
+
+  If (cont = 3) Then
     Begin
       dir := L.cab^.sig^.sig;
       Dispose(dir);
@@ -30,7 +40,7 @@ Begin
     Begin
       L.act := L.cab;
       dir := L.act^.sig^.sig;
-      While (dir <> Nil) Do
+      While (dir^.sig <> Nil) Do
         Begin
           L.act := L.act^.sig;
           dir := L.act^.sig^.sig;
