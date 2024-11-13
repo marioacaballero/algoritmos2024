@@ -1,5 +1,5 @@
 
-Program parcial_2023_tarde;
+Program parcial_2023_noche;
 
 Const 
   n = 31;
