@@ -215,16 +215,77 @@ Begin
   inc(L.tam);
 End;
 
-Procedure modificar(Var L: T_Lista_2; X: String);
+Procedure recorrer(L: T_Lista_2; X: String);
 Begin
   primero(L);
   While (L.act^.info.dni <> x) Do
     siguiente(L);
+End;
+
+Procedure modificar(Var L: T_Lista_2; X: String);
+Begin
+  recorrer(L, X);
   inc(L.act^.info.cant_inf);
 End;
 
+// ----------------------------------------------------
+Procedure punto_c(V: T_Vector_2; dni: String);
+
+Var 
+  enc: Boolean;
+  XL: T_Dato_Lista_2;
+Begin
+  For i:=1 To 2 Do
+    Begin
+      buscar(V[i].L, dni, enc);
+      If (enc) Then
+        Begin
+          recorrer(V[i].L, dni);
+          recuperar(V[i].L, XL);
+          WriteLn('El dni ', dni, ' tiene ', XL.cant_inf, ' inf en la quinc ', i
+          );
+        End
+      Else
+        writeln('El dni no registra infracciones en la quincena ', i);
+    End;
+End;
+
+Procedure muestra_c(V: T_Vector_2);
+
+Var 
+  dni: string;
+Begin
+  Write('Ingrese dni: ');
+  ReadLn(dni);
+  punto_c(V, dni);
+End;
+
+
+
+// cuerpo principal
+
+Var 
+  op: byte;
+  V1: T_Vector;
+  V2: T_Vector_2;
 
 Begin
-  // cuerpo principal
+  Repeat
+    Writeln('Opciones diponibles');
+    Writeln('1. Separar por quincenas');
+    Writeln('2. Cantidad de infracciones de un DNI');
+    Writeln('3. Total de puntos a descontar por DNI');
+    Writeln('4. Salir');
+
+    Write('Ingrese una opcion');
+    ReadLn(op);
+
+    Case op Of 
+      1: punto_b(V1, V2);
+      2: muestra_c(V2);
+      3: writeln('3');
+    End;
+
+  Until op = 4;
 
 End.
