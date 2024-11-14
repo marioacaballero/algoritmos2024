@@ -193,7 +193,7 @@ Begin
   If (cont = 0) Then
     WriteLn('El dni no posee infracciones')
   Else
-    WriteLn('El dni ', buscado, ' tiene ', cont, ' puntos a descontar');
+    WriteLn('El dni ', buscado, ' tiene ', cont, ' puntos');
 End;
 
 Procedure muestra_c(Var V: T_Vector);
@@ -208,7 +208,26 @@ End;
 
 // -------------------------------------------------------------
 
-
+Var 
+  V: T_Vector;
+  S: T_Pila;
+  op: byte;
 Begin
+  Repeat
+    WriteLn('Opciones disponibles');
+    WriteLn('1. Iniciar vector de infracciones');
+    WriteLn('2. Consulta de puntos de DNI');
+    WriteLn('3. Infractores con mas de 20 puntos');
+    WriteLn('4. Salir');
+    Write('Ingrese opcion: ');
+    ReadLn(op);
 
+    Case op Of 
+      1: punto_b(V, S);
+      2: muestra_c(V);
+      3: write('c');
+      Else
+        op := 4;
+    End;
+  Until op = 4;
 End.
