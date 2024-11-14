@@ -30,7 +30,7 @@ Begin
     Begin
       Read(f, data);
       If (data.legajo = leg) Then
-        pos := FilePos(f);
+        pos := FilePos(f) - 1;
     End;
   If (pos <> -1) Then
     Begin
