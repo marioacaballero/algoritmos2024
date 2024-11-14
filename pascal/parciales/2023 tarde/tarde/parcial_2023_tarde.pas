@@ -40,6 +40,22 @@ Type
     cab, act: T_Puntero_Lista;
     tam: word;
   End;
+  T_Dato_Lista_2 = Record
+    dni: string[8];
+    puntos: word;
+  End;
+
+  T_Puntero_Lista_2 = ^T_Nodo_Lista_2;
+
+  T_Nodo_Lista_2 = Record
+    info: T_Dato_Lista;
+    sig: T_Puntero_Lista;
+  End;
+
+  T_Lista_2 = Record
+    cab, act: T_Puntero_Lista;
+    tam: word;
+  End;
 
   T_Dato_Vec = Record
     fecha: 1..31;
@@ -207,10 +223,67 @@ Begin
 End;
 
 // -------------------------------------------------------------
+Procedure punto_d(Var V: T_Vector; Var L: T_Lista_2);
+
+Var 
+  i: Byte;
+  XL: T_Dato_Lista;
+  XL2: T_Dato_Lista_2;
+  enc: Boolean;
+Begin
+  crear(L);
+  For i:= 1 To n Do
+    Begin
+      primero(V[i].L);
+      While (Not fin(V[i].L)) Do
+        Begin
+          recuperar(V[i].L, XL);
+          XL2.dni := XL.dni;
+          XL2.puntos := XL.puntos;
+          buscar(L, XL2.dni, enc);
+          If (enc) Then
+            modificar(L, XL2)
+          Else
+            agregar(L, XL2);
+          siguiente(L);
+        End;
+    End;
+End;
+
+Procedure muestra_d(Var V: T_Vector; Var L: T_Lista_2);
+Begin
+  punto_d(V, L);
+  muestra(L);
+End;
+
+// -------------------------------------------------------------
+Procedure muestra(L: T_Lista_2);
+
+Var 
+  E: T_Dato_Lista_2;
+Begin
+  primero(L);
+  While (Not fin(L)) Do
+    Begin
+      recuperar(L, E);
+      If (E.puntos > 20) Then
+        muestra_datos(E);
+      siguiente(L);
+    End;
+End;
+
+Procedure muestra_datos(E: T_Dato_Lista_2);
+Begin
+  writeln('DNI: ', E.dni);
+  writeln('puntos del mes: ', E.puntos);
+End;
+
+// -------------------------------------------------------------
 
 Var 
   V: T_Vector;
   S: T_Pila;
+  L: T_Lista_2;
   op: byte;
 Begin
   Repeat
@@ -225,7 +298,7 @@ Begin
     Case op Of 
       1: punto_b(V, S);
       2: muestra_c(V);
-      3: write('c');
+      3: muestra_d(V, L);
       Else
         op := 4;
     End;
