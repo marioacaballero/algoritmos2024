@@ -114,13 +114,36 @@ Begin
 End;
 
 Procedure agregar(Var L: T_Lista; X: T_Dato_Lista);
-Begin
 
+Var 
+  dir, ant: T_Puntero_Lista;
+Begin
+  new(dir);
+  dir^.info = X;
+  If (L.cab = Nil ) Or (L.cab^.info.dni > x.dni) Then
+    Begin
+      dir^.sig := L.cab;
+      L.cab := dir;
+    End
+  Else
+    Begin
+      ant := L.cab;
+      L.act := ant^.sig;
+      While (Not fin(L)) And (L.act^.info.dni < x.dni) Do
+        Begin
+          ant := L.act;
+          L.act := ant^.sig;
+        End;
+      ant^.sig := dir;
+      dir^.sig := L.act;
+    End;
+  inc(L.tam);
 End;
 
 Procedure modificar(Var L: T_Lista; X: T_Dato_Lista);
 Begin
-
+  L.act^.info.tipo := X.tipo;
+  L.act^.info.puntos := L.act^.info.puntos + X.puntos;
 End;
 
 Procedure primero(Var L: T_Lista);
@@ -149,6 +172,42 @@ Begin
 End;
 
 // --------------------------------------------------
+Procedure punto_c(Var V: T_Vector; buscado: String);
+
+Var 
+  XL: T_Dato_Lista;
+  cont: word;
+  i: byte;
+  enc: Boolean;
+Begin
+  cont := 0;
+  For i:=1 To n Do
+    Begin
+      buscar(V[i].L, buscado, enc);
+      If (enc) Then
+        Begin
+          recuperar(V[i].L, XL);
+          cont := cont + XL.puntos;
+        End;
+    End;
+  If (cont = 0) Then
+    WriteLn('El dni no posee infracciones')
+  Else
+    WriteLn('El dni ', buscado, ' tiene ', cont, ' puntos a descontar');
+End;
+
+Procedure muestra_c(Var V: T_Vector);
+
+Var 
+  buscado: string;
+Begin
+  Write('Ingrese dni: ');
+  ReadLn(buscado);
+  punto_c(V, buscado);
+End;
+
+// -------------------------------------------------------------
+
 
 Begin
 
