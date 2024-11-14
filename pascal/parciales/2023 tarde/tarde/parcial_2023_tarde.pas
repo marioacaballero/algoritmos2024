@@ -244,7 +244,10 @@ Begin
           If (enc) Then
             modificar(L, XL2)
           Else
-            agregar(L, XL2);
+            Begin
+              If (Not lista_llena(L)) Then
+                agregar(L, XL2);
+            End;
           siguiente(L);
         End;
     End;
@@ -255,6 +258,8 @@ Begin
   punto_d(V, L);
   muestra(L);
 End;
+
+
 
 // -------------------------------------------------------------
 Procedure muestra(L: T_Lista_2);
