@@ -53,7 +53,7 @@ Type
   End;
 
   T_Lista_2 = Record
-    cab, act: T_Puntero_Lista;
+    cab, act: T_Puntero_Lista_2;
     tam: word;
   End;
 
@@ -75,7 +75,10 @@ Var
   enc: Boolean;
 Begin
   For i:= 1 To n Do
-    crear(V[i].L);
+    Begin
+      V[i].fecha := i;
+      crear(V[i].L);
+    End;
 
   While (Not pila_vacia(S)) Do
     Begin
